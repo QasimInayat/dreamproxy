@@ -1,0 +1,19 @@
+POST http://127.0.0.1:8000/api/v1/billing/save
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer LdXwbbpbKYbxr1cfEsxgTKwQ5Cxz8IVmlaSNZxFOqhM0UBw5jXHroqBeiXfWYyWt
+
+{
+    "name": "Fabio",
+    "surname": "Del Rosso",
+    "company": "DreamProxy",
+    "address": "Corso Traiano, 23",
+    "country_id": 110,
+    "city": "Torino",
+    "postal_code": 10135,
+    "province_id": 1,
+    "vat": "00112233445567",
+    "fiscal_code": "DLRFBA91P10L219S",
+    "unique_code": "A12345",
+    "pec": "mia@pec.it"
+}

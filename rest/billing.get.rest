@@ -1,0 +1,4 @@
+GET http://127.0.0.1:8000/api/v1/billing/get
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer LdXwbbpbKYbxr1cfEsxgTKwQ5Cxz8IVmlaSNZxFOqhM0UBw5jXHroqBeiXfWYyWt

@@ -1,0 +1,11 @@
+POST http://127.0.0.1:8000/api/v1/user/register
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "delrossofabio@gmail.com",
+    "password": "testtest",
+    "password_confirmation": "testtest",
+    "privacy": true,
+    "terms": true
+}
