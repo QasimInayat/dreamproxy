@@ -17799,7 +17799,12 @@ __webpack_require__.r(__webpack_exports__);
 var Home = function Home() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_Home_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/Home */ "./resources/js/pages/Home.vue"));
 };
-console.log(Home);
+var Login = function Login() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/Login */ "./resources/js/pages/Login.vue"));
+};
+var Register = function Register() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_Register_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/Register */ "./resources/js/pages/Register.vue"));
+};
 var routes = [{
   name: 'home',
   path: '/',
@@ -17808,6 +17813,14 @@ var routes = [{
   //     title: 'Number 1 Voted Book Writing Agency Online | Diversity Writers',
   //     desc: 'Do you have a book idea itching to be a manuscript? Or are you looking for help to edit and format your book? {{brandWebsite}} is a team of talented professionals with a flair for everything literature. We help you with the concept, structure, as well as the narrative of your book and get you published without fail.'
   // }
+}, {
+  name: 'login',
+  path: '/login',
+  component: Login
+}, {
+  name: 'register',
+  path: '/register',
+  component: Register
 }];
 
 /***/ }),
@@ -39026,7 +39039,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "resources_js_pages_Home_vue") return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_pages_Home_vue":1,"resources_js_pages_Login_vue":1,"resources_js_pages_Register_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

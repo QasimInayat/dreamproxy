@@ -19,12 +19,12 @@
     <link rel="mask-icon" href="{{ asset('app/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#603cba">
     <meta name="theme-color" content="#ffffff"> --}}
-    {{-- <link href="{{ mix('css/app.min.css') }}" type="text/css" rel="stylesheet" /> --}}
+    <link href="{{ mix('css/app.min.css') }}" type="text/css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="nk-body bg-white npc-general pg-auth">
     <div id="app"></div>
-    {{-- <script src="{{ mix('js/main.min.js') }}" type="text/javascript"></script> --}}
+    <script src="{{ mix('js/main.min.js') }}" type="text/javascript"></script>
     <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 </body>
 

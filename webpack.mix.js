@@ -13,4 +13,19 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
 .vue();
+mix.styles(
+    [
+        "resources/css/dashlite.css",
+    ],
+    "public/css/app.min.css"
+);
+
+mix.scripts(
+    [
+        "resources/mainJs/bundle.js",
+        "resources/mainJs//scripts.js",
+    ],
+    "public/js/main.min.js"
+);
+
 
