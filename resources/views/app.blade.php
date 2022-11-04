@@ -22,7 +22,7 @@
     <link href="{{ mix('css/app.min.css') }}" type="text/css" rel="stylesheet" />
 </head>
 
-<body class="nk-body bg-white npc-general pg-auth">
+<body class="nk-body bg-white npc-general pg-auth nk-body bg-white npc-subscription has-aside no-touch nk-nio-theme">
     <div id="app"></div>
     <script src="{{ mix('js/main.min.js') }}" type="text/javascript"></script>
     <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>

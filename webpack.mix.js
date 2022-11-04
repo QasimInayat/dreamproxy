@@ -16,6 +16,7 @@ mix.js('resources/js/app.js', 'public/js')
 mix.styles(
     [
         "resources/css/dashlite.css",
+        "resources/css/theme.css",
     ],
     "public/css/app.min.css"
 );
