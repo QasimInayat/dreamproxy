@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('update:modem-info')->everyFiveMinutes();
+        $schedule->command('modem:update')->everyFiveMinutes();
     }
 
     /**

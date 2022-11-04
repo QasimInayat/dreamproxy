@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Stripe\StripeClient;
 
 class ProductController extends Controller
 {
@@ -15,7 +14,8 @@ class ProductController extends Controller
      */
     function list()
     {
-        $products = Product::where('status', 'ACTIVE')->get();
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+        $products = $stripe->prices->all([]);
         return response($products);
     }
 }

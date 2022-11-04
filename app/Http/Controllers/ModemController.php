@@ -45,4 +45,30 @@ class ModemController extends Controller
         return response([], 200);
 
     }
+
+    /**
+     * @param Request $request
+     * @return Application|ResponseFactory|Response
+     */
+    function getPublicIp(Request $request)
+    {
+        $request->validate([
+            'modem_id' => 'required|exists:users_modem,id'
+        ]);
+
+        $userModem = UsersModem::where('modem_id', $request->input('modem_id'))
+            ->where('user_id', Auth::id())
+            ->with('modem')
+            ->with('modem.server')
+            ->firstOrFail();
+
+        $publicIp = Modem::getPublicIp($userModem->modem);
+        if(!$publicIp) {
+            return response([
+                'error' => 'An error occurred during the ip change. Try later'
+            ], 403);
+        };
+
+        return response($publicIp, 200);
+    }
 }

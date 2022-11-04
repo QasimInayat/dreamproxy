@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Stripe\StripeClient;
 
 class UserController extends Controller
 {
@@ -90,9 +91,7 @@ class UserController extends Controller
      */
     function listModem()
     {
-        return response([
-            Auth::user()->modem
-        ]);
+        return response(Auth::user()->modem);
     }
 
     /**
@@ -170,5 +169,28 @@ class UserController extends Controller
         $user->save();
 
         return response([]);
+    }
+
+
+    /**
+     * @return Application|Response|ResponseFactory
+     * @throws \Stripe\Exception\ApiErrorException
+     */
+    function listPaymentMethods()
+    {
+        if (empty(Auth::user()->stripe_customer_id)) {
+            return response([]);
+        }
+
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+        $paymentMethods = $stripe->customers->allPaymentMethods(Auth::user()->stripe_customer_id, [
+            'type' => 'card'
+        ]);
+
+        return response($paymentMethods->data);
+    }
+
+    function buyProduct(Request $request) {
+
     }
 }

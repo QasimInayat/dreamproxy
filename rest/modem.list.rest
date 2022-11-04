@@ -1,0 +1,4 @@
+GET http://127.0.0.1:8000/api/v1/modem/list
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer WXyIyYAMvj7OOzIj8aVELfvOgtrKd4i8VMQHK4B0uMoQ5IWPZvxK8y7PX5xG9teu
