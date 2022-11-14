@@ -47,20 +47,13 @@
                                                     class="passcode-icon icon-show icon ni ni-eye"></em><em
                                                     class="passcode-icon icon-hide icon ni ni-eye-off"></em></a>
                                                     <input
-                                                autocomplete="new-password" v-model="loginForm.passcode" name="passcode" type="password"
+                                                autocomplete="new-password" v-model="loginForm.password" name="password" type="password"
                                                 class="form-control form-control-lg"  id="password"
-                                                placeholder="Enter your passcode">
+                                                placeholder="Enter your password">
 
-                                                <span v-for="error of f$.loginForm.passcode.$errors" :key="error.$uid" class="invalid">
+                                                <span v-for="error of f$.loginForm.password.$errors" :key="error.$uid" class="invalid">
                                                     {{ error.$message }}
                                                 </span>
-
-                                                <!-- <div class="input-errors" v-for="error of f$.loginForm.passcode.$errors" :key="error.$uid">
-                                                <div class="error-msg alert alert-danger mt-2">
-                                                    <i class="fa fa-info-circle"></i>
-                                                    {{ error.$message }}
-                                                </div>
-                                                </div> -->
                                         </div>
                                     </div>
                                     <div class="form-group"><button type="submit" class="btn btn-lg btn-primary btn-block">Sign
@@ -83,7 +76,6 @@
                                 </div>
                                 <div class="mt-3">
                                     <p>&copy; 2022 DashLite. All Rights Reserved.</p>
-                                    <button @click="pro">fsdfa</button>
                                 </div>
                                
                             </div>
@@ -109,7 +101,7 @@ export default {
             errorMessage: "",
             loginForm: {
                 email: '',
-                passcode: ''
+                password: ''
             }
         }
     },  
@@ -120,7 +112,7 @@ export default {
                     required: helpers.withMessage("This field cannot be empty", required),
                     email: helpers.withMessage("The email field is a valid email", email)
                 },
-                passcode: {
+                password: {
                     required: helpers.withMessage("This field cannot be empty", required),
                 }
             },
@@ -134,17 +126,17 @@ export default {
                 console.log(this.loginForm);
                 login(this.loginForm).then(res => {
                     console.log(res);
+                    window.sessionStorage.setItem('token', res.data.token)
+                    console.log(window.sessionStorage.getItem('token'));
+                    this.$router.push({name: 'dashboard'});
+                }, err => {
+                    console.log(err.response);
+                    this.openToastError(err.response.data.error);
                 })
             } else {
                 console.log(this.loginForm);
             }
         },
-
-        pro(){
-            products().then(res => {
-                console.log(res);
-            })
-        }
     }
 }
 </script>

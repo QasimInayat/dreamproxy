@@ -2241,7 +2241,7 @@ __webpack_require__.r(__webpack_exports__);
       errorMessage: "",
       loginForm: {
         email: '',
-        passcode: ''
+        password: ''
       }
     };
   },
@@ -2252,7 +2252,7 @@ __webpack_require__.r(__webpack_exports__);
           required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
           email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("The email field is a valid email", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email)
         },
-        passcode: {
+        password: {
           required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required)
         }
       }
@@ -2260,20 +2260,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     formSubmit: function formSubmit() {
+      var _this = this;
       this.f$.$validate();
       if (!this.f$.$error) {
         console.log(this.loginForm);
         (0,_service__WEBPACK_IMPORTED_MODULE_1__.login)(this.loginForm).then(function (res) {
           console.log(res);
+          window.sessionStorage.setItem('token', res.data.token);
+          console.log(window.sessionStorage.getItem('token'));
+          _this.$router.push({
+            name: 'dashboard'
+          });
+        }, function (err) {
+          console.log(err.response);
+          _this.openToastError(err.response.data.error);
         });
       } else {
         console.log(this.loginForm);
       }
-    },
-    pro: function pro() {
-      (0,_service__WEBPACK_IMPORTED_MODULE_1__.products)().then(function (res) {
-        console.log(res);
-      });
     }
   }
 });
@@ -2382,15 +2386,7 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("I don't have an account? "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#"
 }, "Try 15 days free")])], -1 /* HOISTED */);
-var _hoisted_21 = {
-  "class": "nk-block nk-auth-footer text-center"
-};
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nk-block-between\"><ul class=\"nav nav-sm mx-auto\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Terms &amp; Condition</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Privacy Policy</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Help</a></li></ul></div>", 1);
-var _hoisted_23 = {
-  "class": "mt-3"
-};
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "© 2022 DashLite. All Rights Reserved.", -1 /* HOISTED */);
-
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nk-block nk-auth-footer text-center\"><div class=\"nk-block-between\"><ul class=\"nav nav-sm mx-auto\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Terms &amp; Condition</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Privacy Policy</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Help</a></li></ul></div><div class=\"mt-3\"><p>© 2022 DashLite. All Rights Reserved.</p></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
@@ -2417,30 +2413,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     autocomplete: "new-password",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.loginForm.passcode = $event;
+      return $data.loginForm.password = $event;
     }),
-    name: "passcode",
+    name: "password",
     type: "password",
     "class": "form-control form-control-lg",
     id: "password",
-    placeholder: "Enter your passcode"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.loginForm.passcode]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.loginForm.passcode.$errors, function (error) {
+    placeholder: "Enter your password"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.loginForm.password]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.loginForm.password.$errors, function (error) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: error.$uid,
       "class": "invalid"
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error.$message), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"input-errors\" v-for=\"error of f$.loginForm.passcode.$errors\" :key=\"error.$uid\">\r\n                                                <div class=\"error-msg alert alert-danger mt-2\">\r\n                                                    <i class=\"fa fa-info-circle\"></i>\r\n                                                    {{ error.$message }}\r\n                                                </div>\r\n                                                </div> ")])]), _hoisted_18], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" New on our platform? "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }), 128 /* KEYED_FRAGMENT */))])]), _hoisted_18], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" New on our platform? "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/register"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Create an account")];
     }),
     _: 1 /* STABLE */
-  })]), _hoisted_20]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[3] || (_cache[3] = function () {
-      return $options.pro && $options.pro.apply($options, arguments);
-    })
-  }, "fsdfa")])])])])])])])]);
+  })]), _hoisted_20]), _hoisted_21])])])])])]);
 }
 
 /***/ }),
@@ -2454,16 +2446,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "login": () => (/* binding */ login)
+/* harmony export */   "login": () => (/* binding */ login),
+/* harmony export */   "register": () => (/* binding */ register)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
-var headers = {
-  "Accept": "application/json",
-  "Content-Type": "application/json"
-};
+var base_url = "/api/v1/user/";
 var login = function login(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/user/login', data, {
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "login"), data);
+};
+var register = function register(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "register"), data, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'

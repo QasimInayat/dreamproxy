@@ -2233,6 +2233,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import {regsiter} from '../service';
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2240,8 +2242,10 @@ __webpack_require__.r(__webpack_exports__);
       errorMessage: "",
       registerForm: {
         email: '',
-        passcode: '',
-        passcodeConfirm: ''
+        password: '',
+        password_confirmation: '',
+        privacy: false,
+        terms: false
       }
     };
   },
@@ -2252,30 +2256,44 @@ __webpack_require__.r(__webpack_exports__);
           required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
           email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("The email field is a valid email", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email)
         },
-        passcode: {
+        password: {
           required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required)
         },
-        passcodeConfirm: {
+        password_confirmation: {
           required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
-          sameAsPassword: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.sameAs)(this.registerForm.passcode)
+          sameAsPassword: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.sameAs)(this.registerForm.password)
         },
         privacy: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
+          sameAs: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.sameAs)(true))
         },
         terms: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
+          sameAs: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.sameAs)(true))
         }
       }
     };
   },
   methods: {
     formSubmit: function formSubmit() {
+      var _this = this;
       this.f$.$validate();
       if (!this.f$.$error) {
         console.log(this.registerForm);
-        // login(this.registerForm).then(res => {
-        //     console.log(res);
-        // })
+        (0,_service__WEBPACK_IMPORTED_MODULE_1__.register)(this.registerForm).then(function (res) {
+          console.log(res);
+          _this.$router.push({
+            name: 'login'
+          });
+          _this.openToastSuccess("User successfully registered, Please login!");
+        }, function (err) {
+          console.log(err.response);
+          if (err.response.data.errors.email) {
+            _this.openToastError(err.response.data.errors.email[0]);
+          } else if (err.response.data.errors.password) {
+            _this.openToastError(err.response.data.errors.password[0]);
+          }
+        });
       } else {
         console.log(this.registerForm);
       }
@@ -2440,13 +2458,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.registerForm.passcode = $event;
+      return $data.registerForm.password = $event;
     }),
-    name: "passcode",
+    name: "password",
     "class": "form-control form-control-lg",
     id: "password",
     placeholder: "Enter your passcode"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.registerForm.passcode]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.registerForm.passcode.$errors, function (error) {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.registerForm.password]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.registerForm.password.$errors, function (error) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: error.$uid,
       "class": "invalid"
@@ -2454,13 +2472,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.registerForm.passcodeConfirm = $event;
+      return $data.registerForm.password_confirmation = $event;
     }),
-    name: "passcodeConfirm",
+    name: "password_confirmation",
     "class": "form-control form-control-lg",
     id: "password",
     placeholder: "Re-ennter your passcode"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.registerForm.passcodeConfirm]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.registerForm.passcodeConfirm.$errors, function (error) {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.registerForm.password_confirmation]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.registerForm.password_confirmation.$errors, function (error) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: error.$uid,
       "class": "invalid"
@@ -2512,16 +2530,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "login": () => (/* binding */ login)
+/* harmony export */   "login": () => (/* binding */ login),
+/* harmony export */   "register": () => (/* binding */ register)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
-var headers = {
-  "Accept": "application/json",
-  "Content-Type": "application/json"
-};
+var base_url = "/api/v1/user/";
 var login = function login(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/user/login', data, {
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "login"), data);
+};
+var register = function register(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "register"), data, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
