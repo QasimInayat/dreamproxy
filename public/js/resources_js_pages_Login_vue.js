@@ -2233,6 +2233,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2268,6 +2269,11 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         console.log(this.loginForm);
       }
+    },
+    pro: function pro() {
+      (0,_service__WEBPACK_IMPORTED_MODULE_1__.products)().then(function (res) {
+        console.log(res);
+      });
     }
   }
 });
@@ -2376,7 +2382,15 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("I don't have an account? "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#"
 }, "Try 15 days free")])], -1 /* HOISTED */);
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nk-block nk-auth-footer text-center\"><div class=\"nk-block-between\"><ul class=\"nav nav-sm mx-auto\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Terms &amp; Condition</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Privacy Policy</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Help</a></li></ul></div><div class=\"mt-3\"><p>© 2022 DashLite. All Rights Reserved.</p></div></div>", 1);
+var _hoisted_21 = {
+  "class": "nk-block nk-auth-footer text-center"
+};
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nk-block-between\"><ul class=\"nav nav-sm mx-auto\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Terms &amp; Condition</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Privacy Policy</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Help</a></li></ul></div>", 1);
+var _hoisted_23 = {
+  "class": "mt-3"
+};
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "© 2022 DashLite. All Rights Reserved.", -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
@@ -2422,7 +2436,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Create an account")];
     }),
     _: 1 /* STABLE */
-  })]), _hoisted_20]), _hoisted_21])])])])])]);
+  })]), _hoisted_20]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[3] || (_cache[3] = function () {
+      return $options.pro && $options.pro.apply($options, arguments);
+    })
+  }, "fsdfa")])])])])])])])]);
 }
 
 /***/ }),
@@ -2440,15 +2458,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
-var login = function login(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('api/user/login', data);
+var headers = {
+  "Accept": "application/json",
+  "Content-Type": "application/json"
 };
-
-// export default class Service {
-//     login(){
-
-//     }
-// }
+var login = function login(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/user/login', data, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  });
+};
 
 /***/ }),
 

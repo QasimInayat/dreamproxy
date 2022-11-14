@@ -10,7 +10,7 @@ const Pricing = () => import('./pages/Pricing');
 export const routes = [
     {
         name: 'home',
-        path: '/',
+        path: '/home',
         component: Home,
         // meta: {
         //     title: 'Number 1 Voted Book Writing Agency Online | Diversity Writers',
@@ -29,7 +29,7 @@ export const routes = [
     },
     {
         name: 'dashboard',
-        path: '/dashboard',
+        path: '/',
         component: Dashboard,
     },
     {

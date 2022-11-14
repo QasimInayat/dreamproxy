@@ -83,7 +83,9 @@
                                 </div>
                                 <div class="mt-3">
                                     <p>&copy; 2022 DashLite. All Rights Reserved.</p>
+                                    <button @click="pro">fsdfa</button>
                                 </div>
+                               
                             </div>
                         </div>
                     
@@ -98,6 +100,7 @@
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
 import {login} from '../service';
+import {products} from '../service';
 
 export default {
     data(){
@@ -135,6 +138,12 @@ export default {
             } else {
                 console.log(this.loginForm);
             }
+        },
+
+        pro(){
+            products().then(res => {
+                console.log(res);
+            })
         }
     }
 }
