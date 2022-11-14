@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Modem;
 use App\Models\User;
+use App\Models\UsersModem;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -88,10 +91,22 @@ class UserController extends Controller
 
     /**
      * @return Application|ResponseFactory|Response
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Exception
      */
     function listModem()
     {
-        return response(Auth::user()->modem);
+        $userModems = UsersModem::where('user_id', Auth::id())->with('modem')->get()->map(function($item) {
+            $currentIp = Modem::getPublicIp($item->modem);
+            $item['current_ip'] = $currentIp->public_ip;
+            $item['host'] = $item->modem->server->address;
+            $item['port'] = Modem::getPortFromWanInterface($item->modem->port);
+            unset($item['password']);
+            unset($item['modem']);
+            return $item;
+        });
+
+        return response($userModems);
     }
 
     /**
@@ -190,7 +205,4 @@ class UserController extends Controller
         return response($paymentMethods->data);
     }
 
-    function buyProduct(Request $request) {
-
-    }
 }

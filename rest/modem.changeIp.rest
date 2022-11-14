@@ -1,8 +1,8 @@
 POST http://127.0.0.1:8000/api/v1/modem/changeIp
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer LdXwbbpbKYbxr1cfEsxgTKwQ5Cxz8IVmlaSNZxFOqhM0UBw5jXHroqBeiXfWYyWt
+Authorization: Bearer WXyIyYAMvj7OOzIj8aVELfvOgtrKd4i8VMQHK4B0uMoQ5IWPZvxK8y7PX5xG9teu
 
 {
-    "modem_id": 2
+    "modem_id": 1
 }

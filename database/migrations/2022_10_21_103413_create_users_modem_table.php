@@ -21,14 +21,13 @@ class CreateUsersModemTable extends Migration
             $table->string('password');
             $table->string('comment');
             $table->dateTime('last_ip_change');
-            $table->ipAddress('current_ip');
             $table->dateTime('expire_date');
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')
                 ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->foreign('modem_id')->on('modem')->references('id')
+            $table->foreign('modem_id')->on('modems')->references('id')
                 ->onUpdate('cascade')->onDelete('restrict');
         });
     }

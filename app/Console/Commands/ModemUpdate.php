@@ -38,6 +38,7 @@ class ModemUpdate extends Command
      * Execute the console command.
      *
      * @return int
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function handle()
     {
@@ -91,6 +92,14 @@ class ModemUpdate extends Command
                 $modemInfo->password = $password;
                 $modemInfo->username = $username;
                 $modemInfo->last_seen = Carbon::now();
+
+                // Se lo status è registered eseguo subito la connessione
+                // ed aggiorno l'ip pubblico del modem al cliente
+                if($state === 'registered') {
+                    Modem::changeIp($modemInfo); // cambiando ip si connette :)
+                    $modemInfo->state = 'connected';
+                }
+
                 $modemInfo->save();
 
             }
