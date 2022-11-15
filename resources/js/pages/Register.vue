@@ -116,8 +116,7 @@
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers, sameAs,  } from "@vuelidate/validators";
-import { register } from '../service';
-// import {regsiter} from '../service';
+import { register } from '../services/authService';
 
 export default {
     data(){

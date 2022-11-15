@@ -4,7 +4,8 @@
             <div class="nk-wrap nk-wrap-nosidebar">
                 <div class="nk-content ">
                     <div class="nk-split nk-split-page nk-split-md">
-                        <div class="nk-split-content mx-auto nk-block-area nk-block-area-column nk-auth-container bg-white nk-block-middle">
+                        <div
+                            class="nk-split-content mx-auto nk-block-area nk-block-area-column nk-auth-container bg-white nk-block-middle">
                             <div class="absolute-top-right d-lg-none p-3 p-sm-5"><a href="#"
                                     class="toggle btn-white btn btn-icon btn-light" data-target="athPromo"><em
                                         class="icon ni ni-info"></em></a></div>
@@ -29,11 +30,12 @@
                                                 class="link link-primary link-sm" tabindex="-1" href="#">Need Help?</a>
                                         </div>
                                         <div class="form-control-wrap"><input autocomplete="off" type="email"
-                                                class="form-control form-control-lg" v-model="loginForm.email" name="email" id="email-address"
-                                                placeholder="Enter your email address">
-                                                <span v-for="error of f$.loginForm.email.$errors" :key="error.$uid" class="invalid">
-                                                    {{ error.$message }}
-                                                </span>
+                                                class="form-control form-control-lg" v-model="loginForm.email"
+                                                name="email" id="email-address" placeholder="Enter your email address">
+                                            <span v-for="error of f$.loginForm.email.$errors" :key="error.$uid"
+                                                class="invalid">
+                                                {{ error.$message }}
+                                            </span>
 
                                         </div>
                                     </div>
@@ -46,22 +48,25 @@
                                                 data-target="password"><em
                                                     class="passcode-icon icon-show icon ni ni-eye"></em><em
                                                     class="passcode-icon icon-hide icon ni ni-eye-off"></em></a>
-                                                    <input
-                                                autocomplete="new-password" v-model="loginForm.password" name="password" type="password"
-                                                class="form-control form-control-lg"  id="password"
-                                                placeholder="Enter your password">
+                                            <input autocomplete="new-password" v-model="loginForm.password"
+                                                name="password" type="password" class="form-control form-control-lg"
+                                                id="password" placeholder="Enter your password">
 
-                                                <span v-for="error of f$.loginForm.password.$errors" :key="error.$uid" class="invalid">
-                                                    {{ error.$message }}
-                                                </span>
+                                            <span v-for="error of f$.loginForm.password.$errors" :key="error.$uid"
+                                                class="invalid">
+                                                {{ error.$message }}
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="form-group"><button type="submit" class="btn btn-lg btn-primary btn-block">Sign
+                                    <div class="form-group"><button type="submit"
+                                            class="btn btn-lg btn-primary btn-block">Sign
                                             in</button></div>
                                 </form>
-                                <div class="form-note-s2 pt-4 text-center"> New on our platform? <router-link to="/register">Create
-                                        an account</router-link></div>
-                                
+                                <div class="form-note-s2 pt-4 text-center"> New on our platform? <router-link
+                                        to="/register">Create
+                                        an account</router-link>
+                                </div>
+
                                 <div class="text-center mt-5"><span class="fw-500">I don't have an account? <a
                                             href="#">Try 15 days free</a></span></div>
                             </div>
@@ -77,10 +82,10 @@
                                 <div class="mt-3">
                                     <p>&copy; 2022 DashLite. All Rights Reserved.</p>
                                 </div>
-                               
+
                             </div>
                         </div>
-                    
+
                     </div>
                 </div>
             </div>
@@ -91,12 +96,12 @@
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
-import {login} from '../service';
-import {products} from '../service';
+import { login } from '../services/authService';
+import { profile } from '../services/userService';
 
 export default {
-    data(){
-        return{
+    data() {
+        return {
             f$: useVuelidate(),
             errorMessage: "",
             loginForm: {
@@ -104,7 +109,7 @@ export default {
                 password: ''
             }
         }
-    },  
+    },
     validations() {
         return {
             loginForm: {
@@ -119,16 +124,17 @@ export default {
         };
     },
 
-    methods:{
-        formSubmit(){
+    methods: {
+        formSubmit() {
             this.f$.$validate();
             if (!this.f$.$error) {
                 console.log(this.loginForm);
                 login(this.loginForm).then(res => {
                     console.log(res);
-                    window.sessionStorage.setItem('token', res.data.token)
-                    console.log(window.sessionStorage.getItem('token'));
-                    this.$router.push({name: 'dashboard'});
+                    localStorage.setItem('token', res.data.token)
+                    console.log(localStorage.getItem('token'));
+                    this.profile();
+                    location.reload();
                 }, err => {
                     console.log(err.response);
                     this.openToastError(err.response.data.error);
@@ -137,6 +143,15 @@ export default {
                 console.log(this.loginForm);
             }
         },
+
+        profile() {
+            profile().then(res => {
+                console.log(res.data);
+                localStorage.setItem('email', res.data.email);
+            }, err => {
+                console.log(err);
+            })
+        }
     }
 }
 </script>

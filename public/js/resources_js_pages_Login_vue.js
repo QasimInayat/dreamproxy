@@ -2228,8 +2228,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
-/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
-/* harmony import */ var _service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../service */ "./resources/js/service.js");
+/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
+/* harmony import */ var _services_authService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/authService */ "./resources/js/services/authService.js");
+/* harmony import */ var _services_userService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/userService */ "./resources/js/services/userService.js");
 
 
 
@@ -2249,11 +2250,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       loginForm: {
         email: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
-          email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("The email field is a valid email", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required),
+          email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("The email field is a valid email", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.email)
         },
         password: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required)
         }
       }
     };
@@ -2264,13 +2265,12 @@ __webpack_require__.r(__webpack_exports__);
       this.f$.$validate();
       if (!this.f$.$error) {
         console.log(this.loginForm);
-        (0,_service__WEBPACK_IMPORTED_MODULE_1__.login)(this.loginForm).then(function (res) {
+        (0,_services_authService__WEBPACK_IMPORTED_MODULE_1__.login)(this.loginForm).then(function (res) {
           console.log(res);
-          window.sessionStorage.setItem('token', res.data.token);
-          console.log(window.sessionStorage.getItem('token'));
-          _this.$router.push({
-            name: 'dashboard'
-          });
+          localStorage.setItem('token', res.data.token);
+          console.log(localStorage.getItem('token'));
+          _this.profile();
+          location.reload();
         }, function (err) {
           console.log(err.response);
           _this.openToastError(err.response.data.error);
@@ -2278,6 +2278,14 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         console.log(this.loginForm);
       }
+    },
+    profile: function profile() {
+      (0,_services_userService__WEBPACK_IMPORTED_MODULE_2__.profile)().then(function (res) {
+        console.log(res.data);
+        localStorage.setItem('email', res.data.email);
+      }, function (err) {
+        console.log(err);
+      });
     }
   }
 });
@@ -2437,10 +2445,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./resources/js/service.js":
-/*!*********************************!*\
-  !*** ./resources/js/service.js ***!
-  \*********************************/
+/***/ "./resources/js/services/authService.js":
+/*!**********************************************!*\
+  !*** ./resources/js/services/authService.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2460,6 +2468,32 @@ var register = function register(data) {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/services/userService.js":
+/*!**********************************************!*\
+  !*** ./resources/js/services/userService.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "profile": () => (/* binding */ profile)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+var base_url = "/api/v1/user/";
+var profile = function profile() {
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("".concat(base_url, "profile"), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      Authorization: "Bearer " + localStorage.getItem("token")
     }
   });
 };

@@ -22,14 +22,14 @@
                                  <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                     <div class="user-toggle">
                                        <div class="user-avatar sm"><em class="icon ni ni-user-alt"></em></div>
-                                       <div class="user-name dropdown-indicator d-none d-sm-block">Abu Bin Ishityak</div>
+                                       <div class="user-name dropdown-indicator d-none d-sm-block">{{ email }}</div>
                                     </div>
                                  </a>
                                  <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
                                     <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                        <div class="user-card">
-                                          <div class="user-avatar"><span>AB</span></div>
-                                          <div class="user-info"><span class="lead-text">Abu Bin Ishtiyak</span><span class="sub-text">info@softnio.com</span></div>
+                                          <div class="user-avatar"><em class="icon ni ni-user-alt"></em></div>
+                                          <div class="user-info"><span class="lead-text"></span><span class="sub-text">{{ email }}</span></div>
                                           <div class="user-action"><a class="btn btn-icon me-n2" href="profile-setting.html"><em class="icon ni ni-setting"></em></a></div>
                                        </div>
                                     </div>
@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="dropdown-inner">
                                        <ul class="link-list">
-                                          <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                          <li @click="logout"><a href="javascript:;"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                        </ul>
                                     </div>
                                  </div>
@@ -109,3 +109,22 @@
                   </div>
                </div>
 </template>
+
+<script>
+   export default{
+      data(){
+         return{
+            email:''
+         }
+      },
+      mounted(){
+         this.email = this.userEmail
+      },
+      methods:{
+         logout(){
+            localStorage.removeItem('token');
+            location.reload();
+         }
+      }
+   }
+</script>

@@ -2229,11 +2229,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
 /* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
-/* harmony import */ var _service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../service */ "./resources/js/service.js");
+/* harmony import */ var _services_authService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/authService */ "./resources/js/services/authService.js");
 
 
-
-// import {regsiter} from '../service';
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2280,7 +2278,7 @@ __webpack_require__.r(__webpack_exports__);
       this.f$.$validate();
       if (!this.f$.$error) {
         console.log(this.registerForm);
-        (0,_service__WEBPACK_IMPORTED_MODULE_1__.register)(this.registerForm).then(function (res) {
+        (0,_services_authService__WEBPACK_IMPORTED_MODULE_1__.register)(this.registerForm).then(function (res) {
           console.log(res);
           _this.$router.push({
             name: 'login'
@@ -2521,10 +2519,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./resources/js/service.js":
-/*!*********************************!*\
-  !*** ./resources/js/service.js ***!
-  \*********************************/
+/***/ "./resources/js/services/authService.js":
+/*!**********************************************!*\
+  !*** ./resources/js/services/authService.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
