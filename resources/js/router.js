@@ -6,6 +6,7 @@ const Invoices = () => import('./pages/Invoice');
 const InvoiceDetails = () => import('./pages/InvoiceDetail');
 const Purchases = () => import('./pages/Purchases');
 const Pricing = () => import('./pages/Pricing');
+const Forget = () => import('./pages/Forget');
 
 import auth from './middleware/auth';
 
@@ -66,5 +67,10 @@ export const routes = [
         meta: {
             middleware: auth,
           },
+    },
+    {
+        name: 'forget',
+        path: '/forget-password',
+        component: Forget,
     },
 ]

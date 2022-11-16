@@ -2266,26 +2266,19 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.f$.$error) {
         console.log(this.loginForm);
         (0,_services_authService__WEBPACK_IMPORTED_MODULE_1__.login)(this.loginForm).then(function (res) {
-          console.log(res);
           localStorage.setItem('token', res.data.token);
           console.log(localStorage.getItem('token'));
           _this.profile();
           location.reload();
         }, function (err) {
-          console.log(err.response);
           _this.openToastError(err.response.data.error);
         });
-      } else {
-        console.log(this.loginForm);
-      }
+      } else {}
     },
     profile: function profile() {
       (0,_services_userService__WEBPACK_IMPORTED_MODULE_2__.profile)().then(function (res) {
-        console.log(res.data);
         localStorage.setItem('email', res.data.email);
-      }, function (err) {
-        console.log(err);
-      });
+      }, function (err) {});
     }
   }
 });
@@ -2335,7 +2328,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_8 = {
   "class": "nk-block nk-block-middle nk-auth-body"
 };
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"brand-logo pb-5\"><a href=\"javascript:;\" class=\"logo-link\"><img class=\"logo-light logo-img logo-img-lg\" src=\"images/logo.png\" srcset=\"images/logo2x.png 2x\" alt=\"logo\"><img class=\"logo-dark logo-img logo-img-lg\" src=\"images/logo-dark.png\" srcset=\"images/logo-dark2x.png 2x\" alt=\"logo-dark\"></a></div><div class=\"nk-block-head\"><div class=\"nk-block-head-content\"><h5 class=\"nk-block-title\">Sign-In</h5><div class=\"nk-block-des\"><p>Access the DashLite panel using your email and passcode.</p></div></div></div>", 2);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"brand-logo pb-5 text-center\"><a href=\"javascript:;\" class=\"logo-link\"><img class=\"logo-light logo-img logo-img-lg\" src=\"images/logo.png\" srcset=\"images/logo2x.png 2x\" alt=\"logo\"><img class=\"logo-dark logo-img logo-img-lg\" src=\"images/logo-dark.png\" srcset=\"images/logo-dark2x.png 2x\" alt=\"logo-dark\"></a></div><div class=\"nk-block-head\"><div class=\"nk-block-head-content text-center\"><h5 class=\"nk-block-title\">Sign-In</h5><div class=\"nk-block-des\"><p>Access the DashLite panel using your email and passcode.</p></div></div></div>", 2);
 var _hoisted_11 = {
   "class": "form-group"
 };
@@ -2355,20 +2348,17 @@ var _hoisted_13 = {
 var _hoisted_14 = {
   "class": "form-group"
 };
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_15 = {
   "class": "form-label-group"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label",
   "for": "password"
-}, "Passcode"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "link link-primary link-sm",
-  tabindex: "-1",
-  href: "auth-reset.html"
-}, "Forgot Code?")], -1 /* HOISTED */);
-var _hoisted_16 = {
+}, "Passcode", -1 /* HOISTED */);
+var _hoisted_17 = {
   "class": "form-control-wrap"
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   tabindex: "-1",
   href: "#",
   "class": "form-icon form-icon-right passcode-switch lg",
@@ -2378,23 +2368,23 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("em", {
   "class": "passcode-icon icon-hide icon ni ni-eye-off"
 })], -1 /* HOISTED */);
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "form-group"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-lg btn-primary btn-block"
 }, "Sign in")], -1 /* HOISTED */);
-var _hoisted_19 = {
+var _hoisted_20 = {
   "class": "form-note-s2 pt-4 text-center"
 };
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-center mt-5"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "fw-500"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("I don't have an account? "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#"
 }, "Try 15 days free")])], -1 /* HOISTED */);
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nk-block nk-auth-footer text-center\"><div class=\"nk-block-between\"><ul class=\"nav nav-sm mx-auto\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Terms &amp; Condition</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Privacy Policy</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Help</a></li></ul></div><div class=\"mt-3\"><p>© 2022 DashLite. All Rights Reserved.</p></div></div>", 1);
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nk-block nk-auth-footer\"><div class=\"nk-block-between\"><ul class=\"nav nav-sm w-100 text-center m-0 d-inline\"><li class=\"nav-item d-inline\"><a class=\"nav-link\" href=\"#\">Terms &amp; Condition</a></li><li class=\"nav-item d-inline\"><a class=\"nav-link\" href=\"#\">Privacy Policy</a></li><li class=\"nav-item d-inline\"><a class=\"nav-link\" href=\"#\">Help</a></li></ul></div><div class=\"mt-3 text-center\"><p>© 2022 DashLite. All Rights Reserved.</p></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
@@ -2418,7 +2408,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: error.$uid,
       "class": "invalid"
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error.$message), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    "class": "link link-primary link-sm",
+    tabindex: "-1",
+    to: "/forget-password"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Forgot Code?")];
+    }),
+    _: 1 /* STABLE */
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     autocomplete: "new-password",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.loginForm.password = $event;
@@ -2433,14 +2432,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: error.$uid,
       "class": "invalid"
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error.$message), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */))])]), _hoisted_18], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" New on our platform? "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }), 128 /* KEYED_FRAGMENT */))])]), _hoisted_19], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" New on our platform? "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/register"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Create an account")];
     }),
     _: 1 /* STABLE */
-  })]), _hoisted_20]), _hoisted_21])])])])])]);
+  })]), _hoisted_21]), _hoisted_22])])])])])]);
 }
 
 /***/ }),
@@ -2454,6 +2453,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "forget": () => (/* binding */ forget),
 /* harmony export */   "login": () => (/* binding */ login),
 /* harmony export */   "register": () => (/* binding */ register)
 /* harmony export */ });
@@ -2465,6 +2465,14 @@ var login = function login(data) {
 };
 var register = function register(data) {
   return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "register"), data, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  });
+};
+var forget = function forget(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "lostPassword"), data, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'

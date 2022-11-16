@@ -18031,6 +18031,9 @@ var Purchases = function Purchases() {
 var Pricing = function Pricing() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_Pricing_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/Pricing */ "./resources/js/pages/Pricing.vue"));
 };
+var Forget = function Forget() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_Forget_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/Forget */ "./resources/js/pages/Forget.vue"));
+};
 
 var home;
 if (localStorage.getItem('token')) {
@@ -18081,6 +18084,10 @@ var routes = [home, {
   meta: {
     middleware: _middleware_auth__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
+}, {
+  name: 'forget',
+  path: '/forget-password',
+  component: Forget
 }];
 
 /***/ }),
@@ -39874,7 +39881,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_pages_Home_vue":1,"resources_js_pages_Login_vue":1,"resources_js_pages_Register_vue":1,"resources_js_pages_Dashboard_vue":1,"resources_js_pages_Invoice_vue":1,"resources_js_pages_InvoiceDetail_vue":1,"resources_js_pages_Purchases_vue":1,"resources_js_pages_Pricing_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_pages_Home_vue":1,"resources_js_pages_Login_vue":1,"resources_js_pages_Register_vue":1,"resources_js_pages_Dashboard_vue":1,"resources_js_pages_Invoice_vue":1,"resources_js_pages_InvoiceDetail_vue":1,"resources_js_pages_Purchases_vue":1,"resources_js_pages_Pricing_vue":1,"resources_js_pages_Forget_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

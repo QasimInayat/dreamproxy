@@ -12,3 +12,10 @@ export  const register =  function (data) {
         'Accept': 'application/json'
     }});
 }
+
+export  const forget =  function (data) {
+    return axios.post(`${base_url}lostPassword`, data, {headers: {
+        'Content-Type':'application/json',
+        'Accept': 'application/json'
+    }});
+}
