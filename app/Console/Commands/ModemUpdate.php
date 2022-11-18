@@ -95,7 +95,7 @@ class ModemUpdate extends Command
 
                 // Se lo status è registered eseguo subito la connessione
                 // ed aggiorno l'ip pubblico del modem al cliente
-                if($state === 'registered') {
+                if(($state === 'registered' || $state === 'disabled' || $state === 'enabled') && $modemInfo->imei != '--') {
                     Modem::changeIp($modemInfo); // cambiando ip si connette :)
                     $modemInfo->state = 'connected';
                 }
