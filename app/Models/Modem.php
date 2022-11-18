@@ -59,9 +59,6 @@ class Modem extends Model
             $modem->port,
         );
 
-        print_r($httpUrl);
-        die();
-
         $client = new Client();
         $response = $client->request('GET', $httpUrl);
         $statusCode = $response->getStatusCode();

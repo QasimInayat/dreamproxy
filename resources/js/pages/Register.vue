@@ -10,13 +10,13 @@
                                     class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em
                                         class="icon ni ni-info"></em></a></div>
                             <div class="nk-block nk-block-middle nk-auth-body">
-                                <div class="brand-logo pb-5"><a href="javascript:;" class="logo-link"><img
+                                <div class="brand-logo pb-5 text-center"><a href="javascript:;" class="logo-link"><img
                                             class="logo-light logo-img logo-img-lg" src="images/logo.png"
                                             srcset="images/logo2x.png 2x" alt="logo"><img
                                             class="logo-dark logo-img logo-img-lg" src="images/logo-dark.png"
                                             srcset="images/logo-dark2x.png 2x" alt="logo-dark"></a></div>
                                 <div class="nk-block-head">
-                                    <div class="nk-block-head-content">
+                                    <div class="nk-block-head-content text-center">
                                         <h5 class="nk-block-title">Register</h5>
                                         <div class="nk-block-des">
                                             <p>Create New Dashlite Account</p>
@@ -39,9 +39,9 @@
                                                 data-target="password"><em
                                                     class="passcode-icon icon-show icon ni ni-eye"></em><em
                                                     class="passcode-icon icon-hide icon ni ni-eye-off"></em></a><input
-                                                type="password" v-model="registerForm.passcode" name="passcode" class="form-control form-control-lg" id="password"
+                                                type="password" v-model="registerForm.password" name="password" class="form-control form-control-lg" id="password"
                                                 placeholder="Enter your passcode">
-                                                <span v-for="error of f$.registerForm.passcode.$errors" :key="error.$uid" class="invalid">
+                                                <span v-for="error of f$.registerForm.password.$errors" :key="error.$uid" class="invalid">
                                                     {{ error.$message }}
                                                 </span>
                                             </div>
@@ -53,9 +53,9 @@
                                                     class="passcode-icon icon-show icon ni ni-eye"></em><em
                                                     class="passcode-icon icon-hide icon ni ni-eye-off"></em></a>
                                                 <input
-                                                type="password" v-model="registerForm.passcodeConfirm" name="passcodeConfirm" class="form-control form-control-lg" id="password"
+                                                type="password" v-model="registerForm.password_confirmation" name="password_confirmation" class="form-control form-control-lg" id="password"
                                                 placeholder="Re-ennter your passcode">
-                                                <span v-for="error of f$.registerForm.passcodeConfirm.$errors" :key="error.$uid" class="invalid">
+                                                <span v-for="error of f$.registerForm.password_confirmation.$errors" :key="error.$uid" class="invalid">
                                                     {{ error.$message }}
                                                 </span>
                                             </div>
@@ -72,7 +72,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="custom-control custom-control-xs custom-checkbox"><input
+                                        <div class="custom-control custom-control-xs custom-checkbox">
+                                            <input
                                                 type="checkbox" v-model="registerForm.terms" name="terms" class="custom-control-input"
                                                 id="checkbox-terms"><label class="custom-control-label"
                                                 for="checkbox-terms">I agree to Dashlite  <a tabindex="-1" href="#">
@@ -86,20 +87,19 @@
                                             class="btn btn-lg btn-primary btn-block" type="submit">Register</button></div>
                                 </form>
                                 <div class="form-note-s2 pt-4 text-center"> Already have an account ? <router-link
-                                        to="/login"><strong>Sign in instead</strong></router-link>
+                                        to="/"><strong>Sign in instead</strong></router-link>
                                 </div>
 
                             </div>
-                            <div class="nk-block nk-auth-footer text-center">
+                            <div class="nk-block nk-auth-footer">
                                 <div class="nk-block-between">
-                                    <ul class="nav nav-sm mx-auto">
-                                        <li class="nav-item"><a class="nav-link" href="#">Terms & Condition</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Privacy Policy</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
-
+                                    <ul class="nav nav-sm w-100 text-center m-0 d-inline">
+                                        <li class="nav-item d-inline"><a class="nav-link" href="#">Terms &amp; Condition</a></li>
+                                        <li class="nav-item d-inline"><a class="nav-link" href="#">Privacy Policy</a></li>
+                                        <li class="nav-item d-inline"><a class="nav-link" href="#">Help</a></li>
                                     </ul>
                                 </div>
-                                <div class="mt-3">
+                                <div class="mt-3 text-center">
                                     <p>&copy; 2022 DashLite. All Rights Reserved.</p>
                                 </div>
                             </div>
@@ -114,8 +114,9 @@
 
 <script>
 import useVuelidate from "@vuelidate/core";
-import { required, email, helpers, sameAs  } from "@vuelidate/validators";
-import {login} from '../service';
+import { required, email, helpers, sameAs,  } from "@vuelidate/validators";
+import { register } from '../services/authService';
+import { profile } from '../services/userService';
 
 export default {
     data(){
@@ -124,8 +125,10 @@ export default {
             errorMessage: "",
             registerForm: {
                 email: '',
-                passcode: '',
-                passcodeConfirm: '',
+                password: '',
+                password_confirmation: '',
+                privacy: false,
+                terms: false
             }
         }
     },  
@@ -136,18 +139,20 @@ export default {
                     required: helpers.withMessage("This field cannot be empty", required),
                     email: helpers.withMessage("The email field is a valid email", email)
                 },
-                passcode: {
+                password: {
                     required: helpers.withMessage("This field cannot be empty", required),
                 },
-                passcodeConfirm: {
+                password_confirmation: {
                     required: helpers.withMessage("This field cannot be empty", required),
-                    sameAsPassword: sameAs(this.registerForm.passcode)
+                    sameAsPassword: sameAs(this.registerForm.password)
                 },
                 privacy: {
                     required: helpers.withMessage("This field cannot be empty", required),
+                    sameAs: helpers.withMessage("This field cannot be empty", sameAs(true))
                 },
                 terms: {
-                    required: helpers.withMessage("This field cannot be empty", required)
+                    required: helpers.withMessage("This field cannot be empty", required),
+                    sameAs: helpers.withMessage("This field cannot be empty", sameAs(true))
                 }
             },
         };
@@ -158,12 +163,27 @@ export default {
             this.f$.$validate();
             if (!this.f$.$error) {
                 console.log(this.registerForm);
-                // login(this.registerForm).then(res => {
-                //     console.log(res);
-                // })
+                register(this.registerForm).then(res => {
+                    localStorage.setItem('token', res.data.token)
+                    console.log(localStorage.getItem('token'));
+                    this.profile();
+                    window.location = '/';
+                }, err => {
+                    console.log(err.response);
+                    if(err.response.data.errors.email){
+                        this.openToastError(err.response.data.errors.email[0]);
+                    } else if(err.response.data.errors.password) {
+                        this.openToastError(err.response.data.errors.password[0]);
+                    }
+                })
             } else {
-                console.log(this.registerForm);
             }
+        },
+        profile() {
+            profile().then(res => {
+                localStorage.setItem('email', res.data.email);
+            }, err => {
+            })
         }
     }
 }
