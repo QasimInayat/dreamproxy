@@ -86,6 +86,8 @@ class StripeController extends Controller
             /** @var Modem $availableModem */
             $availableModem = $availableModems[$i];
 
+            // Recupero l'indirizzo ip del modem
+
             $userModem = new UsersModem();
             $userModem->user_id = $user->id;
             $userModem->modem_id = $availableModem->id;

@@ -13,7 +13,7 @@ class CreateModemTable extends Migration
      */
     public function up()
     {
-        Schema::create('modem', function (Blueprint $table) {
+        Schema::create('modems', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('server_id');
             $table->string('port');
@@ -32,6 +32,7 @@ class CreateModemTable extends Migration
             $table->string('signal_quality');
             $table->string('state');
             $table->dateTime('last_seen');
+            $table->boolean('available')->default(0);
             $table->timestamps();
 
             $table->foreign('server_id')->on('servers')
