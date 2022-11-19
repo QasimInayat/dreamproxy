@@ -128,7 +128,7 @@ class UserController extends Controller
         $user->password_recovery_token = Str::random(64);
         $user->save();
 
-        Mail::send('mails/lostPassword', [
+        Mail::send('emails/lostPassword', [
             'link' => env('APP_URL') . '/recoveryPassword/' . $user->password_recovery_token
         ], function ($message) use ($user) {
             $message

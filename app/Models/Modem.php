@@ -31,7 +31,7 @@ class Modem extends Model
             $modem->modem_id,
             $modem->apn == '--' ? '' : $modem->apn,
             $modem->ip_type == '--' ? 'ipv4' : $modem->ip_type,
-            implode("%20", json_decode($modem->bands))
+            !empty($modem->bands) ? implode("%20", json_decode($modem->bands)) : null
         );
 
         $client = new Client();
