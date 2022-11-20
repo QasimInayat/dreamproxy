@@ -6,9 +6,15 @@ use App\Models\Modem;
 use App\Models\User;
 use App\Models\UsersModem;
 use Carbon\Carbon;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Stripe\Exception\ApiErrorException;
+use Stripe\StripeClient;
 
 class StripeController extends Controller
 {
@@ -55,7 +61,7 @@ class StripeController extends Controller
      * @param object $data
      * @return bool|void
      */
-    public function invoiceFinalized(object $data)
+    private function invoiceFinalized(object $data)
     {
 
         // @todo fare la fattura
@@ -101,6 +107,24 @@ class StripeController extends Controller
 
         // @todo mail di ringraziamento utente
 
+    }
+
+    /**
+     * @return Application|ResponseFactory|Response
+     * @throws ApiErrorException
+     */
+    public function createSetupIntent()
+    {
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+
+        $setupIntent = $stripe->setupIntents->create([
+            'customer' => Auth::user()->stripe_customer_id,
+            'payment_method_types' => ['card']
+        ]);
+
+        return response([
+            'setup_intent' => $setupIntent->client_secret
+        ]);
     }
 
 }

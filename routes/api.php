@@ -7,6 +7,7 @@ use \App\Http\Controllers\CountryController;
 use \App\Http\Controllers\ProvinceController;
 use \App\Http\Controllers\ProductController;
 use \App\Http\Controllers\ModemController;
+use \App\Http\Controllers\StripeController;
 
 Route::prefix('user')->group(function () {
     Route::middleware('guest')->post('register', [UserController::class, 'register']);
@@ -27,6 +28,10 @@ Route::prefix('modem')->group(function () {
 Route::prefix('billing')->group(function () {
     Route::middleware('auth:api')->post('save', [BillingController::class, 'save']);
     Route::middleware('auth:api')->get('get', [BillingController::class, 'get']);
+});
+
+Route::prefix('stripe')->group(function () {
+    Route::middleware('auth:api')->post('createSetupIntent', [StripeController::class, 'createSetupIntent']);
 });
 
 Route::prefix('country')->group(function () {
