@@ -1,11 +1,6 @@
 
-import axios from 'axios';
-
-const base_url = "/api/v1/products/";
+import API from "./api";
 
 export  const products =  function () {
-    return axios.get(`${base_url}list`, {headers: {
-        'Content-Type':'application/json',
-        'Accept': 'application/json'
-    }});
+    return API.get('products/list');
 }

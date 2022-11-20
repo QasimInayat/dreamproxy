@@ -2228,10 +2228,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
-/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
+/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
 /* harmony import */ var _services_authService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/authService */ "./resources/js/services/authService.js");
-/* harmony import */ var _services_userService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/userService */ "./resources/js/services/userService.js");
-
 
 
 
@@ -2253,23 +2251,23 @@ __webpack_require__.r(__webpack_exports__);
     return {
       registerForm: {
         email: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required),
-          email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("The email field is a valid email", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.email)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
+          email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("The email field is a valid email", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email)
         },
         password: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required)
         },
         password_confirmation: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required),
-          sameAsPassword: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.sameAs)(this.registerForm.password)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
+          sameAsPassword: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.sameAs)(this.registerForm.password)
         },
         privacy: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required),
-          sameAs: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.sameAs)(true))
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
+          sameAs: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.sameAs)(true))
         },
         terms: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required),
-          sameAs: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.sameAs)(true))
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
+          sameAs: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.sameAs)(true))
         }
       }
     };
@@ -2296,7 +2294,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {}
     },
     profile: function profile() {
-      (0,_services_userService__WEBPACK_IMPORTED_MODULE_2__.profile)().then(function (res) {
+      (0,_services_authService__WEBPACK_IMPORTED_MODULE_1__.profile)().then(function (res) {
         localStorage.setItem('email', res.data.email);
       }, function (err) {});
     }
@@ -2384,7 +2382,7 @@ var _hoisted_18 = {
 };
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label",
-  "for": "password"
+  "for": "password_confirmation"
 }, "Confirm Passcode", -1 /* HOISTED */);
 var _hoisted_20 = {
   "class": "form-control-wrap"
@@ -2478,7 +2476,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     name: "password_confirmation",
     "class": "form-control form-control-lg",
-    id: "password",
+    id: "password_confirmation",
     placeholder: "Re-ennter your passcode"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.registerForm.password_confirmation]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.registerForm.password_confirmation.$errors, function (error) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
@@ -2532,8 +2530,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "confirmpassword": () => (/* binding */ confirmpassword),
 /* harmony export */   "forget": () => (/* binding */ forget),
 /* harmony export */   "login": () => (/* binding */ login),
+/* harmony export */   "profile": () => (/* binding */ profile),
 /* harmony export */   "register": () => (/* binding */ register)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -2558,23 +2558,14 @@ var forget = function forget(data) {
     }
   });
 };
-
-/***/ }),
-
-/***/ "./resources/js/services/userService.js":
-/*!**********************************************!*\
-  !*** ./resources/js/services/userService.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "profile": () => (/* binding */ profile)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-
-var base_url = "/api/v1/user/";
+var confirmpassword = function confirmpassword(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "confirmLostPassword"), data, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  });
+};
 var profile = function profile() {
   return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("".concat(base_url, "profile"), {
     headers: {

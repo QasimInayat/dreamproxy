@@ -19,3 +19,18 @@ export  const forget =  function (data) {
         'Accept': 'application/json'
     }});
 }
+
+export  const confirmpassword =  function (data) {
+    return axios.post(`${base_url}confirmLostPassword`, data, {headers: {
+        'Content-Type':'application/json',
+        'Accept': 'application/json'
+    }});
+}
+
+export  const profile =  function () {
+    return axios.get(`${base_url}profile`, {headers: {
+        'Content-Type':'application/json',
+        'Accept': 'application/json',
+        Authorization: "Bearer " + localStorage.getItem("token"),
+    }});
+}

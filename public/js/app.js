@@ -18034,6 +18034,15 @@ var Pricing = function Pricing() {
 var Forget = function Forget() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_Forget_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/Forget */ "./resources/js/pages/Forget.vue"));
 };
+var PageNotFound = function PageNotFound() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_PageNotFound_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/PageNotFound */ "./resources/js/pages/PageNotFound.vue"));
+};
+var AddBilling = function AddBilling() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_AddBilling_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/AddBilling */ "./resources/js/pages/AddBilling.vue"));
+};
+var RecoverPassword = function RecoverPassword() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_RecoverPassword_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/RecoverPassword */ "./resources/js/pages/RecoverPassword.vue"));
+};
 
 var home;
 if (localStorage.getItem('token')) {
@@ -18088,6 +18097,21 @@ var routes = [home, {
   name: 'forget',
   path: '/forget-password',
   component: Forget
+}, {
+  name: 'pagenotfound',
+  path: '/:pathMatch(.*)*',
+  component: PageNotFound
+}, {
+  name: 'recover-password',
+  path: '/recoveryPassword/:token',
+  component: RecoverPassword
+}, {
+  name: 'add-billing',
+  path: '/add-billing',
+  component: AddBilling,
+  meta: {
+    middleware: _middleware_auth__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 }];
 
 /***/ }),
@@ -39881,7 +39905,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_pages_Home_vue":1,"resources_js_pages_Login_vue":1,"resources_js_pages_Register_vue":1,"resources_js_pages_Dashboard_vue":1,"resources_js_pages_Invoice_vue":1,"resources_js_pages_InvoiceDetail_vue":1,"resources_js_pages_Purchases_vue":1,"resources_js_pages_Pricing_vue":1,"resources_js_pages_Forget_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_pages_Home_vue":1,"resources_js_pages_Login_vue":1,"resources_js_pages_Register_vue":1,"resources_js_pages_Dashboard_vue":1,"resources_js_pages_Invoice_vue":1,"resources_js_pages_InvoiceDetail_vue":1,"resources_js_pages_Purchases_vue":1,"resources_js_pages_Pricing_vue":1,"resources_js_pages_Forget_vue":1,"resources_js_pages_PageNotFound_vue":1,"resources_js_pages_AddBilling_vue":1,"resources_js_pages_RecoverPassword_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

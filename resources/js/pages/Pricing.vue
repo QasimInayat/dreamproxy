@@ -1,12 +1,12 @@
 <template>
     <div class="nk-app-root">
-         <div class="nk-main ">
+        <div class="nk-main ">
             <div class="nk-wrap ">
-               <app-header />
-               <div class="nk-content ">
-                  <div class="container wide-xl">
-                     <div class="nk-content-inner">
-                       <app-menu />
+                <app-header />
+                <div class="nk-content ">
+                    <div class="container wide-xl">
+                        <div class="nk-content-inner">
+                            <app-menu />
                             <div class="nk-content-body">
                                 <div class="nk-content-wrap">
                                     <div class="nk-block-head nk-block-head-lg">
@@ -22,57 +22,24 @@
                                     </div>
                                     <div class="nk-block">
                                         <div class="row g-gs">
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" v-for="(product, index) in products" :key="index">
                                                 <div class="price-plan card card-bordered text-center">
                                                     <div class="card-inner">
                                                         <div class="price-plan-media"><img
                                                                 src="/images/icons/plan-s1.svg" alt=""></div>
                                                         <div class="price-plan-info">
-                                                            <h5 class="title">Starter</h5><span>If you are a small
+                                                            <h5 class="title">{{ product.nickname }}</h5><span>If you are
+                                                                a small
                                                                 business amn please select this plan</span>
                                                         </div>
                                                         <div class="price-plan-amount">
-                                                            <div class="amount">$99 <span>/yr</span></div><span
-                                                                class="bill">1 User, Billed Yearly</span>
+                                                            <div class="amount">${{ product.unit_amount }}
+                                                                <span>/yr</span>
+                                                            </div>
+                                                                <span class="bill">1 User, Billed Yearly</span>
                                                         </div>
-                                                        <div class="price-plan-action"><a href="#"
-                                                                class="btn btn-primary">Select Plan</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="price-item card card-bordered text-center">
-                                                    <div class="card-inner">
-                                                        <div class="price-plan-media"><img
-                                                                src="/images/icons/plan-s2.svg" alt=""></div>
-                                                        <div class="price-plan-info">
-                                                            <h5 class="title">Pro</h5><span>If you are a small business
-                                                                amn please select this plan</span>
-                                                        </div>
-                                                        <div class="price-plan-amount">
-                                                            <div class="amount">$299 <span>/yr</span></div><span
-                                                                class="bill">5 User, Billed Yearly</span>
-                                                        </div>
-                                                        <div class="price-plan-action"><a href="#"
-                                                                class="btn btn-primary">Select Plan</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="price-item card card-bordered text-center">
-                                                    <div class="card-inner">
-                                                        <div class="price-plan-media"><img
-                                                                src="/images/icons/plan-s3.svg" alt=""></div>
-                                                        <div class="price-plan-info">
-                                                            <h5 class="title">Enterprise</h5><span>If you are a small
-                                                                business amn please select this plan</span>
-                                                        </div>
-                                                        <div class="price-plan-amount">
-                                                            <div class="amount">$599 <span>/yr</span></div><span
-                                                                class="bill">20 User, Billed Yearly</span>
-                                                        </div>
-                                                        <div class="price-plan-action"><a href="#"
-                                                                class="btn btn-primary">Select Plan</a></div>
+                                                        <div class="price-plan-action"><button
+                                                                class="btn btn-primary" @click="routPage">Select Plan</button></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -95,20 +62,23 @@ import { products } from '../services/productService';
 export default {
     data() {
         return {
-            products: []
+            products: ''
         }
     },
-    mounted(){
+    mounted() {
         this.getProducts();
-    },  
+    },
     methods: {
 
         getProducts() {
             products().then(res => {
-                console.log(res);
+                this.products = res.data['data'];
             }, err => {
-                console.log(err);
+                this.openToastError('Something went wrong!')
             });
+        },
+        routPage(){
+            this.$router.push({name: 'add-billing'})
         }
     }
 }

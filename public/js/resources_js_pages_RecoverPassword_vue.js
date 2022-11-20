@@ -1,4 +1,4 @@
-(self["webpackChunkdreamproxy"] = self["webpackChunkdreamproxy"] || []).push([["resources_js_pages_Forget_vue"],{
+(self["webpackChunkdreamproxy"] = self["webpackChunkdreamproxy"] || []).push([["resources_js_pages_RecoverPassword_vue"],{
 
 /***/ "./node_modules/@vuelidate/core/dist/index.esm.js":
 /*!********************************************************!*\
@@ -2216,10 +2216,10 @@ function createI18nMessage(_ref) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/Forget.vue?vue&type=script&lang=js":
-/*!*******************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/Forget.vue?vue&type=script&lang=js ***!
-  \*******************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/RecoverPassword.vue?vue&type=script&lang=js":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/RecoverPassword.vue?vue&type=script&lang=js ***!
+  \****************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2238,54 +2238,73 @@ __webpack_require__.r(__webpack_exports__);
     return {
       f$: (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__["default"])(),
       errorMessage: "",
-      forgetForm: {
-        email: ''
+      recoverPasswordForm: {
+        email: '',
+        password: '',
+        password_confirmation: '',
+        password_recovery_token: ''
       }
     };
   },
   validations: function validations() {
     return {
-      forgetForm: {
+      recoverPasswordForm: {
         email: {
           required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
           email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("The email field is a valid email", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email)
+        },
+        password: {
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
+          minLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.minLength)(8)
+        },
+        password_confirmation: {
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
+          sameAsPassword: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.sameAs)(this.recoverPasswordForm.password)
         }
       }
     };
   },
+  mounted: function mounted() {
+    this.routeData();
+  },
   methods: {
+    routeData: function routeData() {
+      var paramData = this.$route.params;
+      // console.log(this.$route);
+      this.recoverPasswordForm.password_recovery_token = paramData.token;
+      console.log(this.recoverPasswordForm);
+    },
     formSubmit: function formSubmit() {
       var _this = this;
       this.f$.$validate();
       if (!this.f$.$error) {
-        console.log(this.forgetForm);
-        (0,_services_authService__WEBPACK_IMPORTED_MODULE_1__.forget)(this.forgetForm).then(function (res) {
+        console.log(this.recoverPasswordForm);
+        (0,_services_authService__WEBPACK_IMPORTED_MODULE_1__.confirmpassword)(this.recoverPasswordForm).then(function (res) {
           console.log(res);
-          if (res.status == 200) {
-            _this.openToastSuccess('We have sent you reset password link on your given email address.');
-            setTimeout(function () {
-              window.location = '/';
-            }, 2000);
-          }
+          _this.openToastSuccess('Your password has been changed successfully.');
+          setTimeout(function () {
+            window.location = '/';
+          }, 2000);
         }, function (err) {
           console.log(err.response);
-          if (err.response.data.errors.email) {
-            _this.openToastError(err.response.data.errors.email[0]);
-          }
+          _this.openToastError(err.response.data.error);
         });
-      } else {
-        console.log(this.forgetForm);
-      }
-    }
+      } else {}
+    } // profile() {
+    //     profile().then(res => {
+    //         localStorage.setItem('email', res.data.email);
+    //     }, err => {
+    //     })
+    // }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/Forget.vue?vue&type=template&id=79767636":
-/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/Forget.vue?vue&type=template&id=79767636 ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/RecoverPassword.vue?vue&type=template&id=83518bb4":
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/RecoverPassword.vue?vue&type=template&id=83518bb4 ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2308,7 +2327,7 @@ var _hoisted_4 = {
   "class": "nk-content"
 };
 var _hoisted_5 = {
-  "class": "nk-split nk-split-page nk-split-lg"
+  "class": "nk-split nk-split-page nk-split-md"
 };
 var _hoisted_6 = {
   "class": "nk-split-content mx-auto nk-block-area nk-block-area-column nk-auth-container bg-white w-lg-45"
@@ -2325,62 +2344,127 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_8 = {
   "class": "nk-block nk-block-middle nk-auth-body"
 };
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"brand-logo pb-5 text-center\"><a href=\"javascript:;\" class=\"logo-link\"><img class=\"logo-light logo-img logo-img-lg\" src=\"images/logo.png\" srcset=\"images/logo2x.png 2x\" alt=\"logo\"><img class=\"logo-dark logo-img logo-img-lg\" src=\"images/logo-dark.png\" srcset=\"images/logo-dark2x.png 2x\" alt=\"logo-dark\"></a></div><div class=\"nk-block-head\"><div class=\"nk-block-head-content text-center\"><h5 class=\"nk-block-title\">Reset password</h5><div class=\"nk-block-des\"><p>If you forgot your password, well, then we’ll email you instructions to reset your password.</p></div></div></div>", 2);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"brand-logo pb-5 text-center\"><a href=\"javascript:;\" class=\"logo-link\"><img class=\"logo-light logo-img logo-img-lg\" src=\"/images/logo.png\" srcset=\"images/logo2x.png 2x\" alt=\"logo\"><img class=\"logo-dark logo-img logo-img-lg\" src=\"/images/logo-dark.png\" srcset=\"/images/logo-dark2x.png 2x\" alt=\"logo-dark\"></a></div><div class=\"nk-block-head\"><div class=\"nk-block-head-content text-center\"><h5 class=\"nk-block-title\">Recover Password</h5><div class=\"nk-block-des\"><!-- &lt;p&gt;Recover your password&lt;/p&gt; --></div></div></div>", 2);
 var _hoisted_11 = {
   "class": "form-group"
 };
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "form-label-group"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label",
-  "for": "default-01"
-}, "Email"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "link link-primary link-sm",
-  href: "#"
-}, "Need Help?")], -1 /* HOISTED */);
+  "for": "email"
+}, "Email", -1 /* HOISTED */);
 var _hoisted_13 = {
   "class": "form-control-wrap"
 };
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_14 = {
+  "class": "form-group"
+};
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "form-label",
+  "for": "password"
+}, "Passcode", -1 /* HOISTED */);
+var _hoisted_16 = {
+  "class": "form-control-wrap"
+};
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  tabindex: "-1",
+  href: "#",
+  "class": "form-icon form-icon-right passcode-switch lg",
+  "data-target": "password"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("em", {
+  "class": "passcode-icon icon-show icon ni ni-eye"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("em", {
+  "class": "passcode-icon icon-hide icon ni ni-eye-off"
+})], -1 /* HOISTED */);
+var _hoisted_18 = {
+  "class": "form-group"
+};
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "form-label",
+  "for": "password_confirmation"
+}, "Confirm Passcode", -1 /* HOISTED */);
+var _hoisted_20 = {
+  "class": "form-control-wrap"
+};
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  tabindex: "-1",
+  href: "#",
+  "class": "form-icon form-icon-right passcode-switch lg",
+  "data-target": "password"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("em", {
+  "class": "passcode-icon icon-show icon ni ni-eye"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("em", {
+  "class": "passcode-icon icon-hide icon ni ni-eye-off"
+})], -1 /* HOISTED */);
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "form-group"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-lg btn-primary btn-block",
   type: "submit"
-}, "Send Reset Link")], -1 /* HOISTED */);
-var _hoisted_15 = {
-  "class": "form-note-s2 pt-5 text-center"
+}, "Recover Password")], -1 /* HOISTED */);
+var _hoisted_23 = {
+  "class": "form-note-s2 pt-4 text-center"
 };
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Return to login", -1 /* HOISTED */);
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nk-block nk-auth-footer\"><div class=\"nk-block-between\"><ul class=\"nav nav-sm w-100 text-center m-0 d-inline\"><li class=\"nav-item d-inline\"><a class=\"nav-link\" href=\"#\">Terms &amp; Condition</a></li><li class=\"nav-item d-inline\"><a class=\"nav-link\" href=\"#\">Privacy Policy</a></li><li class=\"nav-item d-inline\"><a class=\"nav-link\" href=\"#\">Help</a></li></ul></div><div class=\"mt-3 text-center\"><p>© 2022 DashLite. All Rights Reserved.</p></div></div>", 1);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Sign in instead", -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.formSubmit && $options.formSubmit.apply($options, arguments);
     }, ["prevent"])),
     "class": "form-validate is-alter"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "text",
-    "class": "form-control form-control-lg",
-    id: "default-01",
+    type: "email",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $data.forgetForm.email = $event;
+      return $data.recoverPasswordForm.email = $event;
     }),
     name: "email",
+    "class": "form-control form-control-lg",
+    id: "email",
     placeholder: "Enter your email address"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.forgetForm.email]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.forgetForm.email.$errors, function (error) {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.recoverPasswordForm.email]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.recoverPasswordForm.email.$errors, function (error) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: error.$uid,
       "class": "invalid"
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error.$message), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */))])]), _hoisted_14], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "password",
+    autocomplete: "password",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.recoverPasswordForm.password = $event;
+    }),
+    name: "password",
+    "class": "form-control form-control-lg",
+    id: "password",
+    placeholder: "Enter your passcode"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.recoverPasswordForm.password]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.recoverPasswordForm.password.$errors, function (error) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+      key: error.$uid,
+      "class": "invalid"
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error.$message), 1 /* TEXT */);
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "password",
+    autocomplete: "password",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.recoverPasswordForm.password_confirmation = $event;
+    }),
+    name: "password_confirmation",
+    "class": "form-control form-control-lg",
+    id: "password_confirmation",
+    placeholder: "Re-ennter your passcode"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.recoverPasswordForm.password_confirmation]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.f$.recoverPasswordForm.password_confirmation.$errors, function (error) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+      key: error.$uid,
+      "class": "invalid"
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error.$message), 1 /* TEXT */);
+  }), 128 /* KEYED_FRAGMENT */))])]), _hoisted_22], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Remembered Password? "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_16];
+      return [_hoisted_24];
     }),
     _: 1 /* STABLE */
-  })])]), _hoisted_17])])])])])]);
+  })])])])])])])])]);
 }
 
 /***/ }),
@@ -4719,10 +4803,10 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./resources/js/pages/Forget.vue":
-/*!***************************************!*\
-  !*** ./resources/js/pages/Forget.vue ***!
-  \***************************************/
+/***/ "./resources/js/pages/RecoverPassword.vue":
+/*!************************************************!*\
+  !*** ./resources/js/pages/RecoverPassword.vue ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4730,15 +4814,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Forget_vue_vue_type_template_id_79767636__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Forget.vue?vue&type=template&id=79767636 */ "./resources/js/pages/Forget.vue?vue&type=template&id=79767636");
-/* harmony import */ var _Forget_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Forget.vue?vue&type=script&lang=js */ "./resources/js/pages/Forget.vue?vue&type=script&lang=js");
+/* harmony import */ var _RecoverPassword_vue_vue_type_template_id_83518bb4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RecoverPassword.vue?vue&type=template&id=83518bb4 */ "./resources/js/pages/RecoverPassword.vue?vue&type=template&id=83518bb4");
+/* harmony import */ var _RecoverPassword_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RecoverPassword.vue?vue&type=script&lang=js */ "./resources/js/pages/RecoverPassword.vue?vue&type=script&lang=js");
 /* harmony import */ var D_wamp64_www_dreamproxy_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,D_wamp64_www_dreamproxy_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Forget_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Forget_vue_vue_type_template_id_79767636__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/pages/Forget.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_wamp64_www_dreamproxy_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_RecoverPassword_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_RecoverPassword_vue_vue_type_template_id_83518bb4__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/pages/RecoverPassword.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -4747,34 +4831,34 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/pages/Forget.vue?vue&type=script&lang=js":
-/*!***************************************************************!*\
-  !*** ./resources/js/pages/Forget.vue?vue&type=script&lang=js ***!
-  \***************************************************************/
+/***/ "./resources/js/pages/RecoverPassword.vue?vue&type=script&lang=js":
+/*!************************************************************************!*\
+  !*** ./resources/js/pages/RecoverPassword.vue?vue&type=script&lang=js ***!
+  \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Forget_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_RecoverPassword_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Forget_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Forget.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/Forget.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_RecoverPassword_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./RecoverPassword.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/RecoverPassword.vue?vue&type=script&lang=js");
  
 
 /***/ }),
 
-/***/ "./resources/js/pages/Forget.vue?vue&type=template&id=79767636":
-/*!*********************************************************************!*\
-  !*** ./resources/js/pages/Forget.vue?vue&type=template&id=79767636 ***!
-  \*********************************************************************/
+/***/ "./resources/js/pages/RecoverPassword.vue?vue&type=template&id=83518bb4":
+/*!******************************************************************************!*\
+  !*** ./resources/js/pages/RecoverPassword.vue?vue&type=template&id=83518bb4 ***!
+  \******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Forget_vue_vue_type_template_id_79767636__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_RecoverPassword_vue_vue_type_template_id_83518bb4__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Forget_vue_vue_type_template_id_79767636__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Forget.vue?vue&type=template&id=79767636 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/Forget.vue?vue&type=template&id=79767636");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_RecoverPassword_vue_vue_type_template_id_83518bb4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./RecoverPassword.vue?vue&type=template&id=83518bb4 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/RecoverPassword.vue?vue&type=template&id=83518bb4");
 
 
 /***/ }),

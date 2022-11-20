@@ -94,8 +94,7 @@
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
-import { login } from '../services/authService';
-import { profile } from '../services/userService';
+import { login, profile } from '../services/authService';
 
 export default {
     data() {

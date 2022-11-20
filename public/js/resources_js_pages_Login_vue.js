@@ -2228,10 +2228,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
-/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
+/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
 /* harmony import */ var _services_authService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/authService */ "./resources/js/services/authService.js");
-/* harmony import */ var _services_userService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/userService */ "./resources/js/services/userService.js");
-
 
 
 
@@ -2250,11 +2248,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       loginForm: {
         email: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required),
-          email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("The email field is a valid email", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.email)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required),
+          email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("The email field is a valid email", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email)
         },
         password: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.withMessage("This field cannot be empty", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required)
         }
       }
     };
@@ -2276,7 +2274,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {}
     },
     profile: function profile() {
-      (0,_services_userService__WEBPACK_IMPORTED_MODULE_2__.profile)().then(function (res) {
+      (0,_services_authService__WEBPACK_IMPORTED_MODULE_1__.profile)().then(function (res) {
         localStorage.setItem('email', res.data.email);
       }, function (err) {});
     }
@@ -2453,8 +2451,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "confirmpassword": () => (/* binding */ confirmpassword),
 /* harmony export */   "forget": () => (/* binding */ forget),
 /* harmony export */   "login": () => (/* binding */ login),
+/* harmony export */   "profile": () => (/* binding */ profile),
 /* harmony export */   "register": () => (/* binding */ register)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -2479,23 +2479,14 @@ var forget = function forget(data) {
     }
   });
 };
-
-/***/ }),
-
-/***/ "./resources/js/services/userService.js":
-/*!**********************************************!*\
-  !*** ./resources/js/services/userService.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "profile": () => (/* binding */ profile)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-
-var base_url = "/api/v1/user/";
+var confirmpassword = function confirmpassword(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "confirmLostPassword"), data, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  });
+};
 var profile = function profile() {
   return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("".concat(base_url, "profile"), {
     headers: {

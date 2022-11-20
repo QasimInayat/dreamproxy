@@ -7,6 +7,9 @@ const InvoiceDetails = () => import('./pages/InvoiceDetail');
 const Purchases = () => import('./pages/Purchases');
 const Pricing = () => import('./pages/Pricing');
 const Forget = () => import('./pages/Forget');
+const PageNotFound = () => import('./pages/PageNotFound');
+const AddBilling = () => import('./pages/AddBilling');
+const RecoverPassword = () => import('./pages/RecoverPassword');
 
 import auth from './middleware/auth';
 
@@ -72,5 +75,23 @@ export const routes = [
         name: 'forget',
         path: '/forget-password',
         component: Forget,
+    },
+    {
+        name: 'pagenotfound',
+        path: '/:pathMatch(.*)*',
+        component: PageNotFound,
+    },
+    {
+        name: 'recover-password',
+        path: '/recoveryPassword/:token',
+        component: RecoverPassword,
+    },
+    {
+        name: 'add-billing',
+        path: '/add-billing',
+        component: AddBilling,
+        meta: {
+            middleware: auth,
+          },
     },
 ]

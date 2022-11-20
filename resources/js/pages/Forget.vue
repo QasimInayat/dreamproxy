@@ -97,6 +97,12 @@ export default {
                 console.log(this.forgetForm);
                 forget(this.forgetForm).then(res => {
                     console.log(res);
+                    if(res.status == 200){
+                        this.openToastSuccess('We have sent you reset password link on your given email address.');
+                        setTimeout(() => {
+                            window.location = '/'
+                        }, 2000);
+                    }
                 }, err => {
                     console.log(err.response);
                     if(err.response.data.errors.email){

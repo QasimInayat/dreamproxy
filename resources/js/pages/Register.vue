@@ -46,14 +46,14 @@
                                                 </span>
                                             </div>
                                     </div>
-                                    <div class="form-group"><label class="form-label" for="password">Confirm Passcode</label>
+                                    <div class="form-group"><label class="form-label" for="password_confirmation">Confirm Passcode</label>
                                         <div class="form-control-wrap"><a tabindex="-1" href="#"
                                                 class="form-icon form-icon-right passcode-switch lg"
                                                 data-target="password"><em
                                                     class="passcode-icon icon-show icon ni ni-eye"></em><em
                                                     class="passcode-icon icon-hide icon ni ni-eye-off"></em></a>
                                                 <input
-                                                type="password" v-model="registerForm.password_confirmation" name="password_confirmation" class="form-control form-control-lg" id="password"
+                                                type="password" v-model="registerForm.password_confirmation" name="password_confirmation" class="form-control form-control-lg" id="password_confirmation"
                                                 placeholder="Re-ennter your passcode">
                                                 <span v-for="error of f$.registerForm.password_confirmation.$errors" :key="error.$uid" class="invalid">
                                                     {{ error.$message }}
@@ -115,8 +115,7 @@
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers, sameAs,  } from "@vuelidate/validators";
-import { register } from '../services/authService';
-import { profile } from '../services/userService';
+import { register, profile } from '../services/authService';
 
 export default {
     data(){

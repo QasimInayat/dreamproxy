@@ -16,7 +16,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      products: []
+      products: ''
     };
   },
   mounted: function mounted() {
@@ -24,10 +24,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getProducts: function getProducts() {
+      var _this = this;
       (0,_services_productService__WEBPACK_IMPORTED_MODULE_0__.products)().then(function (res) {
-        console.log(res);
+        _this.products = res.data['data'];
       }, function (err) {
-        console.log(err);
+        _this.openToastError('Something went wrong!');
+      });
+    },
+    routPage: function routPage() {
+      this.$router.push({
+        name: 'add-billing'
       });
     }
   }
@@ -69,13 +75,93 @@ var _hoisted_6 = {
 var _hoisted_7 = {
   "class": "nk-content-body"
 };
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nk-content-wrap\"><div class=\"nk-block-head nk-block-head-lg\"><div class=\"nk-block-head-sub\"><span>Pricing</span></div><div class=\"nk-block-between-md g-4\"><div class=\"nk-block-head-content\"><h2 class=\"nk-block-title fw-normal\">Choose Suitable Plan</h2><div class=\"nk-block-des\"><p>You can change your plan any time by upgrade your plan</p></div></div></div></div><div class=\"nk-block\"><div class=\"row g-gs\"><div class=\"col-md-4\"><div class=\"price-plan card card-bordered text-center\"><div class=\"card-inner\"><div class=\"price-plan-media\"><img src=\"/images/icons/plan-s1.svg\" alt=\"\"></div><div class=\"price-plan-info\"><h5 class=\"title\">Starter</h5><span>If you are a small business amn please select this plan</span></div><div class=\"price-plan-amount\"><div class=\"amount\">$99 <span>/yr</span></div><span class=\"bill\">1 User, Billed Yearly</span></div><div class=\"price-plan-action\"><a href=\"#\" class=\"btn btn-primary\">Select Plan</a></div></div></div></div><div class=\"col-md-4\"><div class=\"price-item card card-bordered text-center\"><div class=\"card-inner\"><div class=\"price-plan-media\"><img src=\"/images/icons/plan-s2.svg\" alt=\"\"></div><div class=\"price-plan-info\"><h5 class=\"title\">Pro</h5><span>If you are a small business amn please select this plan</span></div><div class=\"price-plan-amount\"><div class=\"amount\">$299 <span>/yr</span></div><span class=\"bill\">5 User, Billed Yearly</span></div><div class=\"price-plan-action\"><a href=\"#\" class=\"btn btn-primary\">Select Plan</a></div></div></div></div><div class=\"col-md-4\"><div class=\"price-item card card-bordered text-center\"><div class=\"card-inner\"><div class=\"price-plan-media\"><img src=\"/images/icons/plan-s3.svg\" alt=\"\"></div><div class=\"price-plan-info\"><h5 class=\"title\">Enterprise</h5><span>If you are a small business amn please select this plan</span></div><div class=\"price-plan-amount\"><div class=\"amount\">$599 <span>/yr</span></div><span class=\"bill\">20 User, Billed Yearly</span></div><div class=\"price-plan-action\"><a href=\"#\" class=\"btn btn-primary\">Select Plan</a></div></div></div></div></div></div></div>", 1);
+var _hoisted_8 = {
+  "class": "nk-content-wrap"
+};
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"nk-block-head nk-block-head-lg\"><div class=\"nk-block-head-sub\"><span>Pricing</span></div><div class=\"nk-block-between-md g-4\"><div class=\"nk-block-head-content\"><h2 class=\"nk-block-title fw-normal\">Choose Suitable Plan</h2><div class=\"nk-block-des\"><p>You can change your plan any time by upgrade your plan</p></div></div></div></div>", 1);
+var _hoisted_10 = {
+  "class": "nk-block"
+};
+var _hoisted_11 = {
+  "class": "row g-gs"
+};
+var _hoisted_12 = {
+  "class": "price-plan card card-bordered text-center"
+};
+var _hoisted_13 = {
+  "class": "card-inner"
+};
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "price-plan-media"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "/images/icons/plan-s1.svg",
+  alt: ""
+})], -1 /* HOISTED */);
+var _hoisted_15 = {
+  "class": "price-plan-info"
+};
+var _hoisted_16 = {
+  "class": "title"
+};
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "If you are a small business amn please select this plan", -1 /* HOISTED */);
+var _hoisted_18 = {
+  "class": "price-plan-amount"
+};
+var _hoisted_19 = {
+  "class": "amount"
+};
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "/yr", -1 /* HOISTED */);
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "bill"
+}, "1 User, Billed Yearly", -1 /* HOISTED */);
+var _hoisted_22 = {
+  "class": "price-plan-action"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_app_header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-header");
   var _component_app_menu = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-menu");
   var _component_app_footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-footer");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_menu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_footer)])])])])])])]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_menu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.products, function (product, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "col-md-4",
+      key: index
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.nickname), 1 /* TEXT */), _hoisted_17]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("$" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.unit_amount) + " ", 1 /* TEXT */), _hoisted_20]), _hoisted_21]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      "class": "btn btn-primary",
+      onClick: _cache[0] || (_cache[0] = function () {
+        return $options.routPage && $options.routPage.apply($options, arguments);
+      })
+    }, "Select Plan")])])])]);
+  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_footer)])])])])])])]);
 }
+
+/***/ }),
+
+/***/ "./resources/js/services/api.js":
+/*!**************************************!*\
+  !*** ./resources/js/services/api.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+// Create axios client, pre-configured with baseURL
+
+var base_url = "/api/v1/";
+var API = axios__WEBPACK_IMPORTED_MODULE_0__["default"].create({
+  baseURL: base_url,
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    Authorization: "Bearer " + localStorage.getItem("token")
+  }
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (API);
 
 /***/ }),
 
@@ -90,16 +176,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "products": () => (/* binding */ products)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ "./resources/js/services/api.js");
 
-var base_url = "/api/v1/products/";
 var products = function products() {
-  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("".concat(base_url, "list"), {
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  });
+  return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get('products/list');
 };
 
 /***/ }),
