@@ -7,6 +7,7 @@ const InvoiceDetails = () => import('./pages/InvoiceDetail');
 const Purchases = () => import('./pages/Purchases');
 const Pricing = () => import('./pages/Pricing');
 const Forget = () => import('./pages/Forget');
+const TestPayment = () => import('./pages/TestPayment');
 const PageNotFound = () => import('./pages/PageNotFound');
 const AddBilling = () => import('./pages/AddBilling');
 const RecoverPassword = () => import('./pages/RecoverPassword');
@@ -30,7 +31,7 @@ if(localStorage.getItem('token')){
         path: '/',
         component: Login,
     }
-}   
+}
 
 export const routes = [
     home,
@@ -62,7 +63,7 @@ export const routes = [
         meta: {
             middleware: auth,
           },
-    }, 
+    },
     {
         name: 'purchases',
         path: '/purchases',
@@ -75,6 +76,11 @@ export const routes = [
         name: 'forget',
         path: '/forget-password',
         component: Forget,
+    },
+    {
+        name: 'test-payment',
+        path: '/test-payment',
+        component: TestPayment,
     },
     {
         name: 'pagenotfound',
