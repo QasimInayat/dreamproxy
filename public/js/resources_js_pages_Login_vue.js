@@ -2442,6 +2442,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./resources/js/services/api.js":
+/*!**************************************!*\
+  !*** ./resources/js/services/api.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+// Create axios client, pre-configured with baseURL
+
+var base_url = "/api/v1/";
+var API = axios__WEBPACK_IMPORTED_MODULE_0__["default"].create({
+  baseURL: base_url,
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    Authorization: "Bearer " + localStorage.getItem("token")
+  }
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (API);
+
+/***/ }),
+
 /***/ "./resources/js/services/authService.js":
 /*!**********************************************!*\
   !*** ./resources/js/services/authService.js ***!
@@ -2458,43 +2487,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "register": () => (/* binding */ register)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api */ "./resources/js/services/api.js");
 
 var base_url = "/api/v1/user/";
+
 var login = function login(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "login"), data);
+  return _api__WEBPACK_IMPORTED_MODULE_1__["default"].post("user/login", data);
 };
 var register = function register(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "register"), data, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  });
+  return _api__WEBPACK_IMPORTED_MODULE_1__["default"].post("user/register", data);
 };
 var forget = function forget(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "lostPassword"), data, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  });
+  return _api__WEBPACK_IMPORTED_MODULE_1__["default"].post("".concat(base_url, "lostPassword"), data);
 };
 var confirmpassword = function confirmpassword(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(base_url, "confirmLostPassword"), data, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  });
+  return _api__WEBPACK_IMPORTED_MODULE_1__["default"].post("user/confirmLostPassword", data);
 };
 var profile = function profile() {
-  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("".concat(base_url, "profile"), {
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      Authorization: "Bearer " + localStorage.getItem("token")
-    }
-  });
+  return _api__WEBPACK_IMPORTED_MODULE_1__["default"].get("user/profile");
 };
 
 /***/ }),

@@ -25,7 +25,7 @@
                                     <div class="card-inner card-inner-md">
                                        <div class="card-title-group">
                                           <h6 class="card-title">Modem List</h6>
-                                          <div class="card-action"><a href="payments.html" class="link link-sm">See All <em class="icon ni ni-chevron-right"></em></a></div>
+                                          
                                        </div>
                                     </div>
                                     <table class="table table-tranx">
@@ -110,7 +110,7 @@ export default {
 
         getModemsData() {
          getModems().then(res => {
-                console.log(res);
+               //  console.log(res);
                this.modemsList = res.data;
             }, err => {
                 console.log(err);

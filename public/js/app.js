@@ -18034,6 +18034,9 @@ var Pricing = function Pricing() {
 var Forget = function Forget() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_Forget_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/Forget */ "./resources/js/pages/Forget.vue"));
 };
+var TestPayment = function TestPayment() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_TestPayment_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/TestPayment */ "./resources/js/pages/TestPayment.vue"));
+};
 var PageNotFound = function PageNotFound() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_PageNotFound_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/PageNotFound */ "./resources/js/pages/PageNotFound.vue"));
 };
@@ -18097,6 +18100,10 @@ var routes = [home, {
   name: 'forget',
   path: '/forget-password',
   component: Forget
+}, {
+  name: 'test-payment',
+  path: '/test-payment',
+  component: TestPayment
 }, {
   name: 'pagenotfound',
   path: '/:pathMatch(.*)*',
@@ -39905,7 +39912,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_pages_Home_vue":1,"resources_js_pages_Login_vue":1,"resources_js_pages_Register_vue":1,"resources_js_pages_Dashboard_vue":1,"resources_js_pages_Invoice_vue":1,"resources_js_pages_InvoiceDetail_vue":1,"resources_js_pages_Purchases_vue":1,"resources_js_pages_Pricing_vue":1,"resources_js_pages_Forget_vue":1,"resources_js_pages_PageNotFound_vue":1,"resources_js_pages_AddBilling_vue":1,"resources_js_pages_RecoverPassword_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_pages_Home_vue":1,"resources_js_pages_Login_vue":1,"resources_js_pages_Register_vue":1,"resources_js_pages_Dashboard_vue":1,"resources_js_pages_Invoice_vue":1,"resources_js_pages_InvoiceDetail_vue":1,"resources_js_pages_Purchases_vue":1,"resources_js_pages_Pricing_vue":1,"resources_js_pages_Forget_vue":1,"resources_js_pages_TestPayment_vue":1,"resources_js_pages_PageNotFound_vue":1,"resources_js_pages_AddBilling_vue":1,"resources_js_pages_RecoverPassword_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

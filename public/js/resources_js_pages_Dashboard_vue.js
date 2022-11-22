@@ -26,7 +26,7 @@ __webpack_require__.r(__webpack_exports__);
     getModemsData: function getModemsData() {
       var _this = this;
       (0,_services_modemServices__WEBPACK_IMPORTED_MODULE_0__.getModems)().then(function (res) {
-        console.log(res);
+        //  console.log(res);
         _this.modemsList = res.data;
       }, function (err) {
         console.log(err);
@@ -81,7 +81,13 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "card card-bordered"
 };
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card-inner card-inner-md\"><div class=\"card-title-group\"><h6 class=\"card-title\">Modem List</h6><div class=\"card-action\"><a href=\"payments.html\" class=\"link link-sm\">See All <em class=\"icon ni ni-chevron-right\"></em></a></div></div></div>", 1);
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "card-inner card-inner-md"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "card-title-group"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+  "class": "card-title"
+}, "Modem List")])], -1 /* HOISTED */);
 var _hoisted_13 = {
   "class": "table table-tranx"
 };

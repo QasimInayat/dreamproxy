@@ -2,35 +2,24 @@ import axios from 'axios';
 
 const base_url = "/api/v1/user/";
 
+import API from './api';
+
 export  const login =  function (data) {
-    return axios.post(`${base_url}login`, data);
+    return API.post(`user/login`, data);
 }
 
 export  const register =  function (data) {
-    return axios.post(`${base_url}register`, data, {headers: {
-        'Content-Type':'application/json',
-        'Accept': 'application/json'
-    }});
+    return API.post(`user/register`, data,);
 }
 
 export  const forget =  function (data) {
-    return axios.post(`${base_url}lostPassword`, data, {headers: {
-        'Content-Type':'application/json',
-        'Accept': 'application/json'
-    }});
+    return API.post(`${base_url}lostPassword`, data);
 }
 
 export  const confirmpassword =  function (data) {
-    return axios.post(`${base_url}confirmLostPassword`, data, {headers: {
-        'Content-Type':'application/json',
-        'Accept': 'application/json'
-    }});
+    return API.post(`user/confirmLostPassword`, data);
 }
 
 export  const profile =  function () {
-    return axios.get(`${base_url}profile`, {headers: {
-        'Content-Type':'application/json',
-        'Accept': 'application/json',
-        Authorization: "Bearer " + localStorage.getItem("token"),
-    }});
+    return API.get(`user/profile`);
 }
